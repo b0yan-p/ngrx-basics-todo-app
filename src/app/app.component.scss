@@ -1,0 +1,28 @@
+@use "./../variables.scss" as *;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  align-items: center;
+
+  .header {
+    display: flex;
+    padding: 16px 32px;
+    align-self: start;
+
+    font-size: 32px;
+
+    & > span:last-child {
+      color: $clr-primary;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
+  }
+}

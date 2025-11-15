@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": "66b5",
+      "description": "Clean unused imports",
+      "completed": true
+    },
+    {
+      "id": "b09a",
+      "description": "Group all actions",
+      "completed": true
+    },
+    {
+      "id": "b6ce",
+      "description": "Keep it simple - stupid",
+      "completed": false
+    }
+  ]
+}

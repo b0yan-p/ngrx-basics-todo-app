@@ -1,0 +1,27 @@
+@use "./../../../variables.scss" as *;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+
+  border: 1px solid $clr-surface;
+  border-radius: 6px;
+
+  padding: 24px 32px;
+
+  .completed {
+    background-color: $clr-primary;
+    color: $clr-bg;
+
+    font-size: 32px;
+    font-weight: 600;
+    padding: 24px;
+
+    width: 92px;
+    height: 92px;
+    line-height: 44px;
+    border-radius: 100%;
+  }
+}

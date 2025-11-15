@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+@use "./variables.scss" as *;
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  background-color: $clr-bg;
+  color: $clr-txt;
+
+  font-family:
+    DM Sans,
+    "DM Sans Fallback: Arial",
+    Roboto,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+}
+
+input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+
+  background-color: $clr-secondary;
+  color: $clr-txt;
+
+  &:focus-visible {
+    outline: 1px solid $clr-surface;
+  }
+}
+
+button {
+  color: $clr-bg;
+
+  background-color: $clr-primary;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+
+  &:not([disabled]):hover,
+  &:focus-visible {
+    cursor: pointer;
+    background-color: rgb($clr-primary, 0.8);
+    outline: 1px solid rgb($clr-primary, 0.5);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: rgb($clr-primary, 0.5);
+    color: $clr-txt;
+  }
+}
+
+button.icon-btn {
+  //  background-color: rgb($clr-surface, 0.15);
+  background-color: transparent;
+  padding: 4px 6px;
+
+  &:not([disabled]):hover,
+  &:focus-visible {
+    background-color: rgb($clr-surface, 0.4);
+    outline: none;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}

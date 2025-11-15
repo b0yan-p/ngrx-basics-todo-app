@@ -1,0 +1,25 @@
+@let todos = todos$ | async;
+
+<app-todo-stats [todos]="todos ?? []" />
+
+<div class="add-todo">
+  <input
+    type="text"
+    [formControl]="ctrl"
+    [disabled]="todoService.savingNewItem"
+    placeholder="Write tour task.."
+    (keyup.enter)="addTodo()"
+  />
+  <button
+    (click)="addTodo()"
+    [disabled]="todoService.savingNewItem || ctrl.invalid"
+  >
+    +
+  </button>
+</div>
+
+@for (todo of todos; track todo.id) {
+  <app-todo-item [todo]="todo" />
+} @empty {
+  list is empty
+}

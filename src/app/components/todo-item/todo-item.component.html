@@ -1,0 +1,52 @@
+<div class="row todo-item">
+  <div>
+    <!-- Circle status completed/not completed -->
+    <div
+      class="status"
+      [ngClass]="{
+        completed: todo().completed,
+        'not-completed': !todo().completed,
+      }"
+    ></div>
+    <div [ngClass]="{ done: todo().completed }" class="todo-desc">
+      {{ todo().description }}
+    </div>
+  </div>
+
+  <div class="todo-actions">
+    <!-- Delete todo -->
+    <button
+      (click)="onRemoveTodo(todo())"
+      [disabled]="loading()"
+      class="icon-btn"
+    >
+      <img src="./../../../assets/delete.svg" alt="remove icon" />
+    </button>
+
+    @if (todo().completed) {
+      <!-- Mark todo as not completed -->
+      <button
+        (click)="markAsNotDone(todo().id)"
+        [disabled]="loading()"
+        class="icon-btn"
+      >
+        <img
+          src="./../../../assets/mark-as-not-done.svg"
+          alt="mark todo as done icon"
+        />
+      </button>
+    } @else {
+      <!-- Mark todo as completed -->
+      <button
+        (click)="markAsDone(todo().id)"
+        [disabled]="loading()"
+        class="icon-btn"
+      >
+        <img
+          src="./../../../assets/mark-as-done.svg"
+          alt="mark todo as done icon"
+        />
+      </button>
+    }
+  </div>
+</div>
