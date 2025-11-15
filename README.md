@@ -75,7 +75,7 @@ All data is stored in a fake backend using [`json-server`](https://github.com/ty
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/ngrx-basics-todo-app.git
+git clone https://github.com/b0yan-p/ngrx-basics-todo-app.git
 cd ngrx-basics-todo-app
 ```
 
