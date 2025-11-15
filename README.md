@@ -1,27 +1,96 @@
-# NgrxTest
+# ngrx-basics-todo-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.1.
+A small Angular + NgRx Todo application built to practice core state management concepts in a realistic but simple example.
 
-## Development server
+> Goal: understand how `actions`, `reducers`, `selectors`, and `effects` work together in a real flow (load, add, update, delete).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- ✅ Display a list of todos
+- ✅ Add a new todo (pessimistic create: waits for API success)
+- ✅ Mark todo as **done** / **not done**
+- ✅ Delete a todo
+- ✅ Per-item loading state for actions (e.g. disabling buttons while a request is in progress)
+- ✅ Basic statistics component (e.g. total, completed, not completed)
 
-## Build
+All data is stored in a fake backend using [`json-server`](https://github.com/typicode/json-server).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## Tech Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular** (standalone components)
+- **NgRx**
+  - `@ngrx/store`
+  - `@ngrx/effects`
+- **HTTP & fake backend**
+  - `HttpClient`
+  - `json-server` (local API)
+- **Tooling**
+  - TypeScript
+  - npm
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## NgRx Concepts Covered
 
-## Further help
+- **Actions**
+  - Page/UI actions: `loadTodos`, `addTodo`, `removeTodo`, `markTodoAsDone`, `markTodoAsNotDone`
+  - API/result actions: `loadTodosSuccess`, `loadTodosFailed`, `addTodoSuccess`, `removeTodoSuccess`, etc.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Reducer**
+  - Single `TodoState` slice with:
+    - `todos: Todo[]`
+    - `status` (`pending | loading | success | error`)
+    - `error: string | null`
+  - Immutable updates for:
+    - loading todos
+    - adding a todo
+    - removing a todo
+    - marking todo as done / not done
+
+- **Selectors**
+  - Basic selector to get all todos from the store
+  - Used in components via `store.select(...)` + `AsyncPipe`
+
+- **Effects**
+  - `loadTodos$` – calls backend to fetch todos
+  - `saveTodo$` – handles todo creation (pessimistic; waits for success)
+  - `markAsDone$` / `markTodoAsNotDone$` – update completion status
+  - `removeTodo$` – delete todo with per-item loader
+  - Using `switchMap`, `map`, `catchError`, `finalize`, and `ofType`
+
+- **UI & UX**
+  - Input is only cleared after `addTodo` succeeds
+  - Buttons disabled while:
+    - input is invalid
+    - request is in progress (`savingNewItem` or per-item loader)
+
+---
+
+## Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/<your-username>/ngrx-basics-todo-app.git
+cd ngrx-basics-todo-app
+```
+
+### 2. Install dependencies
+
+`npm install`
+
+### 3. Start the fake backend `(json-server)`
+
+- Make sure you have a db.json file in the project root, for example:
+
+```
+{
+  "todos": [
+    { "id": "1", "description": "Learn NgRx basics", "completed": false }
+  ]
+}
+```
