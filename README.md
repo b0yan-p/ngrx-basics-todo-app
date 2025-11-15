@@ -94,3 +94,6 @@ cd ngrx-basics-todo-app
   ]
 }
 ```
+
+- Then run: `npx json-server db.json --port 3000`
+- The API will be available at: `http://localhost:3000/todos`
