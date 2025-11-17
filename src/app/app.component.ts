@@ -1,7 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { StoreService } from './services/store.service';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,20 +10,4 @@ import { StoreService } from './services/store.service';
 })
 export class AppComponent {
   title = 'ngrxTest';
-  router = inject(Router);
-  kme?: Subscription;
-
-  store = inject(StoreService);
-
-  snackbar: any;
-
-  ngOnInit() {
-    setTimeout(() => {
-      this.title = 'Updated Title from AppComponent';
-    }, 3000);
-  }
-
-  navigate() {
-    this.router.navigate(['c1']);
-  }
 }
